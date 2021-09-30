@@ -544,6 +544,7 @@ $('#usarioIngresoDatos').modal('hide');
   //Modal para ingresar correlativo de badge de transporte.
   function ModalCorrelativo(){
     $('#usarioIngresoDatos').modal('show');
+    document.getElementById('correlativo').focus();
     //$('#usarioIngresoDatos').modal('hide');
   }
 
