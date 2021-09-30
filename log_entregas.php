@@ -140,12 +140,12 @@
               <div class="content">
                 <small><label>Usuario entregando :</label></small>
                 <label id="usc"></label>
-                <input type="button" onclick="verificar()" value="VERIFICAR">
+                <!-- <input type="button" onclick="verificar()" value="VERIFICAR"> -->
                 <form onsubmit="event.preventDefault()">
 
-                  <input type="text" name="nota" id="nota" placeholder="NOTA" maxlength="50" autocomplete="off">
+                  <!-- <input type="text" name="nota" id="nota" placeholder="NOTA" maxlength="50" autocomplete="off">
                   <input type="checkbox" id="PAGO" name="PAGO" value="PAGO" disabled><small>Pago </small>
-                  <input type="checkbox" id="AGOTADO" name="AGOTADO" value="AGOTADO" ><small>Agotado </small>
+                  <input type="checkbox" id="AGOTADO" name="AGOTADO" value="AGOTADO" ><small>Agotado </small> -->
 
                   <input type="number" name="badge" id="badge" placeholder="BADGE" maxlength="5" autocomplete="off">
                   <div class="field-wrapper">
