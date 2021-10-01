@@ -12,3 +12,7 @@ Este sistema es el que se utiliza para la revisión de marcadas de entradas y sa
 - Se modificaron algunos controles para evitar errores (como que los campos de badge únicamente aceptaran números).
 - Se agregó una pantalla para el ingreso de correlativo del carnet de transporte.
 - Se modifcó la pantalla de actualización éxitosa de estado, dado que ya no era necesaria la antigua (porque mostraba una imagen navideña y reproducía un jingle navideño).
+
+Cambios realizados el 01-10-2021
+
+- Se modificó el código para que cuando el campo de correlativo este vacío muestre un error y no pase a la pantalla de "éxito".
