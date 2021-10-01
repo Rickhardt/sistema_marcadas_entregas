@@ -355,7 +355,7 @@ $('#usarioIngresoDatos').modal('hide');
 
   function guardar_entrega() {
     document.getElementById('badge').focus();
-    notag = document.getElementById('nota').value
+    // notag = document.getElementById('nota').value
 
     var str = document.getElementById('badge').value;
     var n = str.length;
@@ -592,7 +592,7 @@ $('#usarioIngresoDatos').modal('hide');
 
           document.getElementById("formModal").reset();
           return;
-      } else if(correlativo.length > 4 || correlativo.length < 4) {
+      } else if(correlativo.length > 4 || correlativo.length < 4 || correlativo == '') {
         swal.fire({
               title: "Error con el correlativo ingresado",
               text: "El correlativo debe cualquier valor entre 0001 y 3000.                   Se ha ingresado: " + correlativo,
@@ -622,15 +622,29 @@ $('#usarioIngresoDatos').modal('hide');
               if(response.trim() != ""){
 
                   if(response.trim() == 1) {
-                    swal.fire({
-                        title: "Al Parece existe un problema",
-                        text: "El correlativo ingresado ya ha sido usado con otro usuario.",
-                        showConfirmButton: true,
-                        icon: "error",
-                    });
+                    (async () => {
 
+                        const { value: status } = await swal.fire({
+
+                            title: "Al Parece existe un problema",
+                            text: "El correlativo ingresado ya ha sido usado con otro usuario.",
+                            showConfirmButton: true,
+                            icon: "info",
+                            inputValidator: (value) => {
+                                return new Promise((resolve) => {
+                                    if (dismiss === 'close') {
+                                      resolve();
+                                    }
+                                })
+                            }
+                        })
+                        document.getElementById('badge').value = '';
+                        document.getElementById('correlativo').value = '';
+                        document.getElementById('badge').focus();
+                    })()
                     document.getElementById("correlativo").value = '';
                     return;
+
                   } else {
                     document.getElementById("formModal").reset();
                     swal.fire({
@@ -640,7 +654,8 @@ $('#usarioIngresoDatos').modal('hide');
                         icon: "error",
                     })
                   }
-
+                  return;
+                  
               } else {
 
                   enviarDatos = true;
@@ -664,7 +679,7 @@ $('#usarioIngresoDatos').modal('hide');
               success: function(r) {
                 // new Audio('navidad.mp3').play()
 
-                document.getElementById('nota').value = ''
+                // document.getElementById('nota').value = ''
                 swal.fire({
                   title: "Nuevo Badge entregado",
                   text: 'Se entrego badge a: ' + nombreEmpleado,
@@ -709,8 +724,6 @@ $('#usarioIngresoDatos').modal('hide');
     get_graf_data()
     x = document.getElementById('username').value;
     y = document.getElementById('password').value;
-
-
 
     if (x == "") {
       Swal.fire({

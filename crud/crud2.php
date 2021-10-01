@@ -6,7 +6,7 @@ class crud2
         $obj = new conectar();
         $conexion = $obj->conexionMySQL();
         //$sql = "SELECT COUNT(supervisor) FROM db_asistencia.credenciales WHERE supervisor = '" . $u1 . "' AND pass_sup = '" . $p1 . "' AND REST_REVISADO = 'X';";
-        $sql = "SELECT TRIM(COUNT(supervisor)) FROM db_asistencia.credenciales WHERE supervisor = '" . $u1 . "' AND pass_sup = sha1('" . $p1 . "') AND REST_REVISADO = 'X';";
+        $sql = "SELECT TRIM(COUNT(supervisor)) FROM db_asistencia.credenciales WHERE supervisor = '" . $u1 . "' AND pass_sup = sha1('" . $p1 . "') AND REST_REVISADO IN ('T', 'F', 'X');";
         $resultado = mysqli_query($conexion, $sql);
         return mysqli_fetch_row($resultado);
         mysqli_close($conexion);
