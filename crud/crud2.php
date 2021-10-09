@@ -155,7 +155,7 @@ class crud2
     {
         $obj = new conectar();
         $conexion = $obj->conexionMySQL();
-        $sql = "SELECT BADGE,NOMBRE,NOMAREA,DATE_FORMAT(FECHAHORA,'%d/%m/%Y %H:%i') AS FECHAHORA,ESTADO,ENTREGO,NOTA FROM db_asistencia.entregas_viveres WHERE badge = '" . $badge . "';";
+        $sql = "SELECT BADGE,NOMBRE,NOMAREA,DATE_FORMAT(FECHAHORA,'%d/%m/%Y %H:%i') AS FECHAHORA,ESTADO,ENTREGO,NOTA FROM db_asistencia.entregas_viveres WHERE badge = $badge";
         $resultado = mysqli_query($conexion, $sql);
         return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
         mysqli_close($conexion);
