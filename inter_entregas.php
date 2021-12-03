@@ -33,14 +33,18 @@ if ($estado == 'actualizar') {
   $badge = $_POST['badge'];
   $user = $_POST['user'];
   $notag = $_POST['notag'];
-  if(isset($_POST['correlativo'])) $correlativo = $_POST['correlativo'];
-  else $correlativo = null;
+  // if(isset($_POST['correlativo'])) $correlativo = $_POST['correlativo'];
+  // else $correlativo = null;
 
-  //Snippet agregado para verificar si la persona tiene o no carné de uso de transporte empresarial.
-  $result_validar = $info->VerificacionTransporte($badge);
+  //Esto para la entrega de chompipollos, esto no lleva correlativo.
+  $result_validar = $info->actualizar($badge, $user, $notag);
+  echo $result_validar;
+
+  //Snippet agregado para verificar si la persona tiene o no carné de uso de transporte empresarial. Se debe deshabilitar para la entrega de chompipollos
+  // $result_validar = $info->VerificacionTransporte($badge);
   
-  if($result_validar == 1) echo $result_validar;
-  else $result_validar = $info->actualizar($badge, $user, $notag, $correlativo);
+  // if($result_validar == 1) echo $result_validar;
+  // else $result_validar = $info->actualizar($badge, $user, $notag, $correlativo);
 
 }
 

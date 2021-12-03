@@ -20,19 +20,20 @@ class crud2
         return mysqli_fetch_row($resultado);
         mysqli_close($conexion);
     }
-    public function actualizar($badge, $user, $notag, $correlativo)
+    public function actualizar($badge, $user, $notag) //actualizar($badge, $user, $notag, $correlativo)
     {
         date_default_timezone_set('America/Tegucigalpa');
         $fecha = date('Y-m-d H:i:s');
         $obj = new conectar();
+        $tipoEntrega = 'ENTREGA CHOMPIPOLLOS';
 
-        $correlativo = (string)$correlativo;
+        // $correlativo = (string)$correlativo;
 
-        if($correlativo != '' || $correlativo != null) $tipoEntrega = "CAMBIO BADGE Y CARNET DE TRANSPORTE";
-        else $tipoEntrega = 'CAMBIO BADGE';
+        // if($correlativo != '' || $correlativo != null) $tipoEntrega = "CAMBIO BADGE Y CARNET DE TRANSPORTE";
+        // else $tipoEntrega = 'CAMBIO BADGE';
 
         $conexion = $obj->conexionMySQL();
-        $sql = "UPDATE db_asistencia.entregas_viveres SET TIPO_ENTREGA = '$tipoEntrega', FECHAHORA = CURRENT_TIMESTAMP() , ESTADO = 'ENTREGADO', ENTREGO = '$user', NOTA = UPPER('$notag'), CORR = '$correlativo' WHERE BADGE = $badge AND ESTADO = 'PENDIENTE';";
+        $sql = "UPDATE db_asistencia.entregas_viveres SET TIPO_ENTREGA = '$tipoEntrega', FECHAHORA = CURRENT_TIMESTAMP() , ESTADO = 'ENTREGADO', ENTREGO = '$user', NOTA = UPPER('$notag') WHERE BADGE = $badge AND ESTADO = 'PENDIENTE';";
         mysqli_query($conexion, $sql);
         mysqli_close($conexion);
     }

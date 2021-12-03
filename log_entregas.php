@@ -130,7 +130,7 @@
   <div class="container pt-5 mt-5">
     <div class="row pr-5">
       <div class="col-md-7 align-items-right">
-        <img src="img/flyer.png" alt="" title="Información cambio de badge" style="height: 30%;">
+        <img src="img/Chompi Sistema.jpg" alt="" title="Información cambio de badge" style="height: 30%;">
       </div>
 
       <div class="col-md-auto pr-5">
@@ -514,13 +514,13 @@ $('#usarioIngresoDatos').modal('hide');
             },
             success: function(r) {
 
-              if(parseInt(r) == 1){
+              if(r != "\r\n\r\n\r\n\r\n\r\n"){
                 (async () => {
 
                     const { value: status } = await swal.fire({
 
-                        title: "¡Debe ingresar correlativo!",
-                        text: "Usuario utiliza transporte de la empresa. Se debe cambiar el badge de transporte también.",
+                        title: "¡Uy! Ha habido un problema",
+                        text: r,
                         showConfirmButton: true,
                         icon: "info",
                         width: 750,
@@ -532,7 +532,9 @@ $('#usarioIngresoDatos').modal('hide');
                             })
                         }
                     })
-                    ModalCorrelativo();
+                    // ModalCorrelativo();
+                    document.getElementById('badge').value = '';
+                    document.getElementById('badge').focus();
                 })()
                 return;
               } else MensajeFinalizacion();
@@ -680,19 +682,30 @@ $('#usarioIngresoDatos').modal('hide');
                 // new Audio('navidad.mp3').play()
 
                 // document.getElementById('nota').value = ''
-                swal.fire({
-                  title: "Nuevo Badge entregado",
-                  text: 'Se entrego badge a: ' + nombreEmpleado,
-                  //html: "<img src='https://sistemas.avxslv.com/marcadas/ids/" + document.getElementById('badge').value + ".jpg' width='400px' height='300px'><br> " + r + "   <center><img src='img/navidad.jpg' width='400px' height='200px' title='AVX INDUSTRIES Ltd.'></center>",
-                  //html: "<img src='ids/" + document.getElementById('badge').value + ".jpg' style='height: 50%;'><br> " + r + "   <center><img src='img/AVX Kyocera Logo.png' style='height: 100px;' title='Kyocera AVX Components Corporation.'></center>",
-                  showConfirmButton: true,
-                  icon: "success",
-                  timer: 3000,
-                  width: 800,
-                }).then(function() {
-                  document.getElementById('badge').value = '';
-                  document.getElementById('badge').focus();
-                });
+
+                (async () => {
+
+                    const { value: status } = await swal.fire({
+
+                        title: "Chompipollo entregado",
+                        text: 'Se registró la entrega a: ' + nombreEmpleado + '. Ya puede regresarle su badge',
+                        //html: "<img src='https://sistemas.avxslv.com/marcadas/ids/" + document.getElementById('badge').value + ".jpg' width='400px' height='300px'><br> " + r + "   <center><img src='img/navidad.jpg' width='400px' height='200px' title='AVX INDUSTRIES Ltd.'></center>",
+                        //html: "<img src='ids/" + document.getElementById('badge').value + ".jpg' style='height: 50%;'><br> " + r + "   <center><img src='img/AVX Kyocera Logo.png' style='height: 100px;' title='Kyocera AVX Components Corporation.'></center>",
+                        showConfirmButton: true,
+                        icon: "info",
+                        width: 750,
+                        inputValidator: (value) => {
+                            return new Promise((resolve) => {
+                                if (dismiss === 'close') {
+                                  resolve();
+                                }
+                            })
+                        }
+                    })
+                    // ModalCorrelativo();
+                    document.getElementById('badge').value = '';
+                    document.getElementById('badge').focus();
+                })()
               }
             })
   }
