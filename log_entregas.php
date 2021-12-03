@@ -443,7 +443,7 @@ $('#usarioIngresoDatos').modal('hide');
 
           swal.fire({
             title: "Error!",
-            text: "¡Ya se entrego su badge!",
+            text: "¡Ya se le entregó el chompipollo!",
             showConfirmButton: false,
             icon: "error",
             timer: 3000
@@ -514,7 +514,7 @@ $('#usarioIngresoDatos').modal('hide');
             },
             success: function(r) {
 
-              if(r != "\r\n\r\n\r\n\r\n\r\n"){
+              if(r != "\n\n\n\n\n"){
                 (async () => {
 
                     const { value: status } = await swal.fire({
